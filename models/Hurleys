@@ -1,0 +1,27 @@
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+const hurleySchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  hurleystyle: {
+    type: String,
+    required: true,
+  },
+  hurleysize: {
+    type: String,
+    required: true,
+  },
+  hurleyweight: {
+    type: String,
+    required: true,
+  },
+  hurleyquantity: {
+    type: String,
+    required: true,
+  },
+});
+
+module.exports = mongoose.model('Hurley', hurleySchema);

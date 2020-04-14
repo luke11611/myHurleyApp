@@ -1,0 +1,224 @@
+<!doctype html>
+
+<head>
+  <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+</head>
+
+
+<!–– User is NOT logged in --!>
+
+<% if (!user) { %>
+
+
+	<div class="topnav">
+			<div class="login-container">
+        <form action="./home.ejs" method="post">
+        	<div>
+        	<label>Username:</label>
+        	<input type="text" name="username"/><br/>
+        	</div>
+        	<div>
+        	<label>Password:</label>
+        	<input type="password" name="password"/>
+        	</div>
+        	<div>
+        	<input type="submit" value="Submit"/>
+        	</div>
+        </form>
+			</div>
+		</div>
+
+    <h1>Welcome to the Hurley Application</h1>
+  	<br><br><br><br><br><br><br><br>
+
+  	<br><br><br><br><br>
+
+  <section class="insert">
+    <form action="/insert" method="post">
+
+        <div class = "homehurley">
+
+        <h2> See our selection of hurleys below</h2>
+
+        <label for="hurleystyle">Choose a style:</label>
+        <select name="hurleystyleDROP" size="1">
+        <option value="Cork">Cork Style</option>
+        <option value="Kilkenny">Kilkenny Style</option>
+        <option value="Tipperary">Tipperary Style</option></select><br>
+
+
+        <label for="hurleysize">Choose a size:</label>
+        <select name="hurleysizeDROP" size="1">
+        <option value="26">26 Inches</option>
+        <option value="28">28 Inches</option>
+        <option value="30">30 Inches</option>
+        <option value="32">32 Inches</option>
+        <option value="34">34 Inches</option></select><br>
+
+
+        <label >Choose a weight:</label>
+        <select name="hurleyweightDROP" size="1">
+        <option value="light">Light</option>
+        <option value="medium">Medium</option>
+        <option value="heavy">Heavy</option></select><br>
+
+        <div class="input">
+            <label for="content">Choose a quantity</label>
+            <!-- avoids 'e', '-', '+', '.' ... all characters that are not numbers  -->
+            <input type="number" id="hurleyquantityDROP" name="hurleyquantityDROP"
+            onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))">
+        </div>
+
+
+            <script>
+              function CalculateCost(e) {
+
+                var inputHurleyQuantity = document.getElementById("hurleyquantityDROP").value
+                var intInputHurleyQuantity = parseInt(inputHurleyQuantity);
+
+                if(intInputHurleyQuantity >0){
+                 var price = 18;
+                 var totalPrice = price*intInputHurleyQuantity;
+                 document.getElementById('hurleycalculateprice').value = totalPrice.toString();
+
+                }else{
+
+                  alert("Error, please enter a correct quantity");
+                  document.getElementById('hurleyquantityDROP').value = "";
+                  document.getElementById('hurleycalculateprice').value = "";
+              }
+            }
+            </script>
+
+
+
+        <script>
+          function errorFunction(e) { alert("Error Message");    }
+        </script>
+
+
+        <button id="createOrderButtonID" type="button"  onclick="CalculateCost(this)">Calculate Cost</button>
+        <br>
+
+        <label >Total Cost:</label>
+        <input type="text" id="hurleycalculateprice" readonly > </br>
+
+        </br></br>
+        <h2> Please log in to make an order. </h2>
+
+
+    </form>
+
+
+
+
+
+</div>
+
+</section>
+
+
+
+<!–– User is Logged In --!>
+
+<% } else { %>
+
+
+	<div class="topnav">
+	  <p>Hello <%= user.displayName %></p>
+    <a href="/">Home</a>
+  	<a href="/profile">View profile</a>
+    <a href="/vieworders">View Orders</a>
+    <a href="/logout">Log out</a>
+  </div>
+
+
+  <h1>Welcome to the Hurley Application</h1>
+  <br><br><br><br><br><br><br><br>
+
+  <br><br><br><br><br>
+
+<section class="insert">
+  <form action="/insert" method="post">
+
+      <div class = "homehurley">
+
+      <h2> See our selection of hurleys below</h2>
+
+        <label for="hurleystyle">Choose a style:</label>
+        <select name="hurleystyleDROP" size="1">
+        <option value="Cork">Cork Style</option>
+        <option value="Kilkenny">Kilkenny Style</option>
+        <option value="Tipperary">Tipperary Style</option></select><br>
+
+
+        <label for="hurleysize">Choose a size:</label>
+        <select name="hurleysizeDROP" size="1">
+        <option value="26">26 Inches</option>
+        <option value="28">28 Inches</option>
+        <option value="30">30 Inches</option>
+        <option value="32">32 Inches</option>
+        <option value="34">34 Inches</option></select><br>
+
+
+        <label >Choose a weight:</label>
+        <select name="hurleyweightDROP" size="1">
+        <option value="light">Light</option>
+        <option value="medium">Medium</option>
+        <option value="heavy">Heavy</option></select><br>
+
+        <div class="input">
+            <label for="content">Choose a quantity</label>
+            <!-- avoids 'e', '-', '+', '.' ... all characters that are not numbers  -->
+            <input type="number" id="hurleyquantityDROP" name="hurleyquantityDROP"
+            onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))">
+        </div>
+
+
+            <script>
+              function CalculateCost(e) {
+
+                var inputHurleyQuantity = document.getElementById("hurleyquantityDROP").value
+                var intInputHurleyQuantity = parseInt(inputHurleyQuantity);
+
+                if(intInputHurleyQuantity >0){
+                 var price = 18;
+                 var totalPrice = price*intInputHurleyQuantity;
+                 document.getElementById('hurleycalculateprice').value = totalPrice.toString();
+
+                }else{
+
+                  alert("Error, please enter a correct quantity");
+                  document.getElementById('hurleyquantityDROP').value = "";
+                  document.getElementById('hurleycalculateprice').value = "";
+              }
+            }
+            </script>
+
+
+
+        <script>
+          function errorFunction(e) { alert("Error Message");    }
+        </script>
+
+
+        <button id="createOrderButtonID" type="button"  onclick="CalculateCost(this)">Calculate Cost</button>
+        <br>
+
+        <label >Total Cost:</label>
+        <input type="text" id="hurleycalculateprice" readonly > </br>
+
+        <button type="submit">Create Order</button><br>
+
+    </form>
+
+
+
+
+
+</div>
+
+</section>
+<% } %>

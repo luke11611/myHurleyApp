@@ -1,0 +1,45 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Profile</title>
+
+  <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+</head>
+
+<body>
+
+  <div class="topnav">
+	  <p>Hello <%= user.displayName %></p>
+    <a href="/">Home</a>
+  	<a href="/profile">View profile</a>
+    <a href="/vieworders">View Orders</a>
+    <a href="/logout">Log out</a>
+  </div>
+
+    <h1>Welcome to the Hurley Application</h1>
+    <br><br><br><br><br><br><br><br>
+
+
+
+<div class = "table">
+  <h2> See your details below </h2>
+  
+  <table border="1">
+          <tr>
+                  <th>Username</th>
+                  <th>Name</th>
+                  <th>Email</th>
+          </tr>
+                 <tr>
+                    <td><%= user.username %></td>
+                    <td><%= user.displayName %></td>
+                    <td><%= user.emails[0].value %></td>
+                  </tr>
+  </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+body {
+    background-color: #ffc067;
+    }
+
+h1 {
+font-size: 30px;
+text-align: left;
+color: #4D0000;
+}
+
+h2 {
+  font-size: 20px;
+  text-align: center;
+  color: #4D0000;
+}
+
+  .homehurley {
+  font-size: 30px;
+  text-align: center;
+  }
+
+.topnav {
+  overflow: hidden;
+  float: right;
+  top: 0;
+  color: #4D0000;
+  padding: 14px 16px;
+  font-size: 25px;
+}
+
+a {
+  display:  block;
+  color: #513aff;
+  text-align: left;
+  padding: 14px 16px;
+  text-decoration:  underline;
+}
+
+a:hover {
+  background: #ddd;
+  color: black;
+}
+* {box-sizing:border-box}
+
+
+.table {
+    font-size: 20px;
+    text-align: center;
+    margin: auto;
+    width: 20%;
+    padding: 10px;
+
+  }
+
+.homehurley {
+  margin: auto;
+  font-size: 25px;
+  width: 90%;
+}
