@@ -186,10 +186,8 @@
                 if(intInputHurleyQuantity >0){
                  var price = 18;
                  var totalPrice = price*intInputHurleyQuantity;
-                 document.getElementById('hurleycalculateprice').value = totalPrice.toString();
-
+                 document.getElementById('hurleycalculateprice').value = "€ "+totalPrice.toString();
                 }else{
-
                   alert("Error, please enter a correct quantity");
                   document.getElementById('hurleyquantityDROP').value = "";
                   document.getElementById('hurleycalculateprice').value = "";
@@ -200,7 +198,7 @@
 
 
         <script>
-          function errorFunction(e) { alert("Error Message");    }
+          function callErrorMessage(alert("function"));    }
         </script>
 
 
@@ -210,13 +208,25 @@
         <label >Total Cost:</label>
         <input type="text" id="hurleycalculateprice" readonly > </br>
 
-        <button type="submit">Create Order</button><br>
+        <button type="submit" onclick="completeOrder()">Create Order</button><br>
+
+        <script>
+          function completeOrder(e) {
+
+            var inputHurleyQuantity = document.getElementById("hurleyquantityDROP").value
+            var intInputHurleyQuantity = parseInt(inputHurleyQuantity);
+
+            if(intInputHurleyQuantity >0){
+              alert("Order created");
+            }else{
+              alert("Error, please enter a correct quantity");
+              document.getElementById('hurleyquantityDROP').value = "";
+              document.getElementById('hurleycalculateprice').value = "";
+          }
+        }
+        </script>
 
     </form>
-
-
-
-
 
 </div>
 

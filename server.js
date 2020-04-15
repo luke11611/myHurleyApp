@@ -91,23 +91,22 @@ app.get('/',
 app.post('/insert',   require('connect-ensure-login').ensureLoggedIn(),
 function(req, res, next) {
 
- let name = req.user.username;
- let style = req.body.hurleystyleDROP;
- let size = req.body.hurleysizeDROP;
- let weight = req.body.hurleyweightDROP;
- let quantity = req.body.hurleyquantityDROP;
+     let name = req.user.username;
+     let style = req.body.hurleystyleDROP;
+     let size = req.body.hurleysizeDROP;
+     let weight = req.body.hurleyweightDROP;
+     let quantity = req.body.hurleyquantityDROP;
 
-
-      Hurley.create({
-              name: name,
-              hurleystyle: style,
-              hurleysize: size,
-              hurleyweight: weight,
-              hurleyquantity: quantity,
-            })
-            .then(user => res.send(user))
-            .catch(err => res.send(err));
-            res.redirect('/');
+          Hurley.create({
+                  name: name,
+                  hurleystyle: style,
+                  hurleysize: size,
+                  hurleyweight: weight,
+                  hurleyquantity: quantity,
+                })
+                .then(user => res.send(user))
+                .catch(err => res.send(err));
+                res.redirect('/');
     });
 
 //Home
@@ -120,7 +119,6 @@ app.post('/home.ejs',
 //Logout
 app.get('/logout',
   function(req, res){
-
     req.logout();
     res.redirect('/');
   });
