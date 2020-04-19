@@ -158,7 +158,6 @@ app.get('/profile',
 app.get('/vieworders', require('connect-ensure-login').ensureLoggedIn(), function(req, res) {
           Hurley.find({name: req.user.username},function(err, hurleys) {
           res.render('vieworders', { user: req.user, hurleys: hurleys});
-        //  console.log(hurleys);
       });
 });
 
