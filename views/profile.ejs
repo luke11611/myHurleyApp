@@ -27,16 +27,16 @@
 
 <div class = "table">
   <h2> See your details below </h2>
-  
+
   <table border="1">
           <tr>
-                  <th>Username</th>
                   <th>Name</th>
+                  <th>Username</th>
                   <th>Email</th>
           </tr>
                  <tr>
-                    <td><%= user.username %></td>
                     <td><%= user.displayName %></td>
+                    <td><%= user.username %></td>
                     <td><%= user.emails[0].value %></td>
                   </tr>
   </table>

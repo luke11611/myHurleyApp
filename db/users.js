@@ -4,7 +4,6 @@ var records = [
   ,{ id: 3, username: 'liam', password: 'present', displayName: 'Liam', emails: [ { value: 'Liam@NCI.ie' } ] }
 ];
 
-
 exports.findById = function(id, cb) {
   process.nextTick(function() {
     var idx = id - 1;

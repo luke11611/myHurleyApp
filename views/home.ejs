@@ -7,7 +7,7 @@
 </head>
 
 
-<!–– User is NOT logged in --!>
+<!–– User is NOT logged in, Home - Log In view --!>
 
 <% if (!user) { %>
 
@@ -48,7 +48,6 @@
         <option value="Kilkenny">Kilkenny Style</option>
         <option value="Tipperary">Tipperary Style</option></select><br>
 
-
         <label for="hurleysize">Choose a size:</label>
         <select name="hurleysizeDROP" size="1">
         <option value="26">26 Inches</option>
@@ -56,7 +55,6 @@
         <option value="30">30 Inches</option>
         <option value="32">32 Inches</option>
         <option value="34">34 Inches</option></select><br>
-
 
         <label >Choose a weight:</label>
         <select name="hurleyweightDROP" size="1">
@@ -82,9 +80,7 @@
                  var price = 18;
                  var totalPrice = price*intInputHurleyQuantity;
                  document.getElementById('hurleycalculateprice').value = totalPrice.toString();
-
                 }else{
-
                   alert("Error, please enter a correct quantity");
                   document.getElementById('hurleyquantityDROP').value = "";
                   document.getElementById('hurleycalculateprice').value = "";
@@ -97,7 +93,6 @@
         <script>
           function errorFunction(e) { alert("Error Message");    }
         </script>
-
 
         <button id="createOrderButtonID" type="button"  onclick="CalculateCost(this)">Calculate Cost</button>
         <br>
@@ -121,7 +116,7 @@
 
 
 
-<!–– User is Logged In --!>
+<!–– User is Logged In, Home - Authenticated view --!>
 
 <% } else { %>
 
@@ -188,18 +183,12 @@
                  var totalPrice = price*intInputHurleyQuantity;
                  document.getElementById('hurleycalculateprice').value = "€ "+totalPrice.toString();
                 }else{
-                  alert("Error, please enter a correct quantity");
+                  alert("Error, please enter a valid quantity");
                   document.getElementById('hurleyquantityDROP').value = "";
                   document.getElementById('hurleycalculateprice').value = "";
               }
             }
             </script>
-
-
-
-        <script>
-          function callErrorMessage(alert("function"));    }
-        </script>
 
 
         <button id="createOrderButtonID" type="button"  onclick="CalculateCost(this)">Calculate Cost</button>
@@ -219,7 +208,7 @@
             if(intInputHurleyQuantity >0){
               alert("Order created");
             }else{
-              alert("Error, please enter a correct quantity");
+              alert("Error, please enter a valid quantity");
               document.getElementById('hurleyquantityDROP').value = "";
               document.getElementById('hurleycalculateprice').value = "";
           }
