@@ -11,12 +11,16 @@ const port = process.env.PORT || 3000;
 const compression = require('compression');
 const path = require('path');
 const flash = require('connect-flash');
+var sslRedirect = require('heroku-ssl-redirect');
+
+
 
 // Create a new Express application.
 var app = express();
 app.use(flash());
 app.use(compression());
-
+// enable ssl redirect
+app.use(sslRedirect());
 
 // Require static assets from public folder
 app.use(express.static(path.join(__dirname, 'views')));
@@ -28,6 +32,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 
+//HurleyOrder Database setup
 mongoose.connect ('mongodb+srv://Luke100:Luke100@clusterhurleyapp-ucfnz.mongodb.net/HurleyOrder?retryWrites=true&w=majority', {
   useNewUrlParser: true,
 },
@@ -71,19 +76,21 @@ app.use(require('express-session')({ secret: 'mysession', secure: true , resave:
 app.use(passport.initialize());
 app.use(passport.session());
 
-//HOME
+//Home Log In
+app.post('/login.post',
+  passport.authenticate('local', { successRedirect: '/', //home - authenticated
+                                   failureRedirect: '/', //home - log in
+                                   failureFlash: 'Invalid log in, please try again' })
+
+);
+
+//Home Routing
 app.get('/',
   function(req, res) {
    res.render('home', { user: req.user });
  });
 
-//Home Log In
-app.post('/home.ejs',
-  passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/',
-                                   failureFlash: 'Flash fail message', successFlash: 'Welcome to YelpCamp!' })
 
-);
 
 
 
