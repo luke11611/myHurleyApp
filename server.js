@@ -1,7 +1,7 @@
-var express = require('express');
-var passport = require('passport');
-var Strategy = require('passport-local').Strategy;
-var db = require('./db');
+const express = require('express');
+const passport = require('passport');
+const Strategy = require('passport-local').Strategy;
+const db = require('./db');
 const MongoClient = require('mongodb').MongoClient;
 const BodyParser = require("body-parser");
 const ObjectId = require("mongodb").ObjectID;
@@ -11,16 +11,25 @@ const port = process.env.PORT || 3000;
 const compression = require('compression');
 const path = require('path');
 const flash = require('connect-flash');
-var sslRedirect = require('heroku-ssl-redirect');
+const sslRedirect = require('heroku-ssl-redirect');
+const rateLimit = require("express-rate-limit");
 
 
 
 // Create a new Express application.
-var app = express();
+const app = express();
 app.use(flash());
 app.use(compression());
 // enable ssl redirect
 app.use(sslRedirect());
+
+//Limiter
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 10000, // 15 minutes
+  max: 100// limit each IP to 100 requests per windowMs
+});
+//  apply to all requests
+app.use(limiter);
 
 // Require static assets from public folder
 app.use(express.static(path.join(__dirname, 'views')));
@@ -39,8 +48,6 @@ mongoose.connect ('mongodb+srv://Luke100:Luke100@clusterhurleyapp-ucfnz.mongodb.
 )
 
 const Hurley = require('./models/Hurleys');
-
-
 
 // Configure the local strategy for use by Passport.
 passport.use(new Strategy(
@@ -69,7 +76,7 @@ passport.use(new Strategy(
 // logging, parsing, and session handling.
 app.use(require('morgan')('combined'));
 app.use(require('body-parser').urlencoded({ extended: true }));
-app.use(require('express-session')({ secret: 'mysession', secure: true , resave: false, saveUninitialized: false }));
+app.use(require('express-session')({ secret: 'mysession', secure: true , resave: false, saveUninitialized: false,  }));
 
 // Initialize Passport and restore authentication state, if any, from the
 // session.
@@ -90,17 +97,6 @@ app.get('/',
    res.render('home', { user: req.user });
  });
 
-
-
-
-
-/*
-//Home
-app.post('/home.ejs',
-  passport.authenticate('local', { failureRedirect: '/', failureFlash: true }),
-  function(req, res) {
-    res.redirect('/');
-  });*/
 
 //Creat hurley Order
 app.post('/insert',   require('connect-ensure-login').ensureLoggedIn(),
@@ -123,35 +119,6 @@ function(req, res, next) {
                 .catch(err => res.send(err));
                 res.redirect('/');
     });
-
-
-
-
-
-/*
-  //Home
-  app.post('/home.ejs', function( req, res, next) { passport.authenticate('local', function(err, user, info) {
-
-            if (err) { return next(err);  console.log("Error username1") }
-
-            if (!user) { return res.redirect('/');  failureFlash: 'Invalid username or password' }
-
-            req.logIn(user, function(err) {
-            if (err) { return next(err); }
-              return res.redirect('/');
-
-        });
-      })(req, res, next);
-    });*/
-
-/*
-  app.post('/home.ejs',
-  passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/',
-                                   failureFlash: true })
-);*/
-
-
 
 
 //Profile page

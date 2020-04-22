@@ -30,7 +30,7 @@
 			</div>
 		</div>
 
-    <h1>Welcome to the Hurley Application</h1>
+    <h1>Welcome to the Hurley Order Application</h1>
   	<br><br><br><br><br><br><br><br>
 
   	<br><br><br><br><br>
@@ -58,9 +58,9 @@
 
         <label >Choose a weight:</label>
         <select name="hurleyweightDROP" size="1">
-        <option value="light">Light</option>
-        <option value="medium">Medium</option>
-        <option value="heavy">Heavy</option></select><br>
+        <option value="Light">Light</option>
+        <option value="Medium">Medium</option>
+        <option value="Heavy">Heavy</option></select><br>
 
         <div class="input">
             <label for="content">Choose a quantity</label>
@@ -79,20 +79,15 @@
                 if(intInputHurleyQuantity >0){
                  var price = 18;
                  var totalPrice = price*intInputHurleyQuantity;
-                 document.getElementById('hurleycalculateprice').value = totalPrice.toString();
+                 document.getElementById('hurleycalculateprice').value = "€ "+totalPrice.toString();
                 }else{
-                  alert("Error, please enter a correct quantity");
+                  alert("Error, please enter a valid quantity");
                   document.getElementById('hurleyquantityDROP').value = "";
                   document.getElementById('hurleycalculateprice').value = "";
               }
             }
             </script>
 
-
-
-        <script>
-          function errorFunction(e) { alert("Error Message");    }
-        </script>
 
         <button id="createOrderButtonID" type="button"  onclick="CalculateCost(this)">Calculate Cost</button>
         <br>
@@ -130,7 +125,7 @@
   </div>
 
 
-  <h1>Welcome to the Hurley Application</h1>
+  <h1>Welcome to the Hurley Order Application</h1>
   <br><br><br><br><br><br><br><br>
 
   <br><br><br><br><br>
@@ -160,9 +155,9 @@
 
         <label >Choose a weight:</label>
         <select name="hurleyweightDROP" size="1">
-        <option value="light">Light</option>
-        <option value="medium">Medium</option>
-        <option value="heavy">Heavy</option></select><br>
+        <option value="Light">Light</option>
+        <option value="Medium">Medium</option>
+        <option value="Heavy">Heavy</option></select><br>
 
         <div class="input">
             <label for="content">Choose a quantity</label>
@@ -206,7 +201,7 @@
             var intInputHurleyQuantity = parseInt(inputHurleyQuantity);
 
             if(intInputHurleyQuantity >0){
-              alert("Order created");
+              alert("Your order has been created!");
             }else{
               alert("Error, please enter a valid quantity");
               document.getElementById('hurleyquantityDROP').value = "";
